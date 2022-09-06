@@ -1,0 +1,18 @@
+.mdiv{
+    /* background-image: radial-gradient(#232323,black);
+     */
+     background-color: black;
+    width: 100%;
+    height: calc(100vh - 112px);
+    padding: 20px 50px;
+    margin-top: 56px;
+    display: flex;
+    flex-direction: row;
+}
+
+@media(max-width:985px){
+    .mdiv{
+        flex-direction: column;
+        height: fit-content;
+    }
+}

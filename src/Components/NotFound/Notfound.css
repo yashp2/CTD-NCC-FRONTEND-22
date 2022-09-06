@@ -1,0 +1,9 @@
+.nf{
+    height: calc(100vh);
+    background-color: white;
+}
+
+.nfimg{
+    max-height: 80vh;
+    margin-top: 10vh;
+}

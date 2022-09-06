@@ -1,0 +1,51 @@
+.test-cases-pg{
+    display: block;
+    height: calc(100vh - 112px);
+    margin-top: 56px;
+    margin-bottom: 56px;
+    /* padding-top: 56px;
+    padding-bottom: 56px; */
+    background-image: radial-gradient(#232323,black);
+}
+.t-pg-console{
+    height: 80%;
+    width: 350px;
+    border: 2px solid #39998e;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.t-pg-tcs{
+    /* height: 80%; */
+    /* width: 350px; */
+    flex: 0.8;
+    background-color: transparent;
+    max-height: 80%;
+    overflow-y: auto;
+    /* border: 1px solid white; */
+}
+.t-pg-tc{
+    background-color: transparent;
+}
+.pass-fail{
+    height: 30px;
+    width: 30px;
+}
+.br-w{
+    border: 2px solid white;
+}
+.br-w-1{
+    border: 1px solid white;
+
+}
+
+@media(max-width:800px){
+    .test-cases-pg{
+        flex-direction: column!important;
+        height: fit-content;
+    }
+    .t-pg-tcs , .t-pg-console{
+        width: 90vw;
+        height: fit-content;
+    }
+}

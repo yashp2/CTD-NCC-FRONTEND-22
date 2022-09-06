@@ -1,0 +1,40 @@
+.leaderboard-pg{
+    height: calc(100vh - 112px);
+    margin-top: 56px;
+    background-image: radial-gradient(#232323,black);
+    overflow-x: auto;
+}
+
+.leaderboard-table{
+    width: 80%;
+    min-width: 510px;
+}
+
+.paginationc{
+    border: 2px solid #39998e;
+    border-radius: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 0px;
+}
+.paginate-nav-bar{
+    width: fit-content!important;
+}
+.paginationc li{
+    display: inline-block;
+    margin: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* display: flex;
+    flex-direction: row;
+    width: 800px; */
+}
+
+.previous a, .next a{
+    color: white;
+    text-decoration: none;
+}
+
+.activec{
+    background-color: #39998e!important;
+}

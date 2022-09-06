@@ -1,0 +1,37 @@
+.inst_page{
+    height: calc(100vh - 112px);
+    margin-top: 56px;
+    background-image: radial-gradient(#232323,black);
+}
+
+.inst_page_mdiv{
+    background-color: transparent;
+    border: 2px solid #39998e;
+    width: 100%;
+    max-width: 800px;
+}
+
+.i1{
+    text-align: left;
+    word-wrap:normal;
+}
+
+.i1 li{
+    padding: 3px;
+}
+
+.cbx-i{
+    height: 15px;
+    width: 15px;
+}
+.s-bt1{
+    width: 200px;
+}
+
+@media(max-width:600px){
+    .inst_page{
+        height: fit-content!important;
+        min-height: calc(100vh - 112px);
+        overflow-y: auto;
+    }
+}
