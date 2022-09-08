@@ -109,7 +109,7 @@ function Rdiv() {
           <label htmlFor="inpfff" className="rbn rbn3 bg-t  b-1 c-w br-2 pd-lr-15">
             Choose File
           </label>
-          <input type="file" name="inpf" id="inpfff" onChange={} />
+          <input type="file" name="inpf" id="inpfff" />
         </div>
         <div >
           <input type="submit" value="Submit" className="rbn rbn4 b-b pd-lr-15 bg-t  b-1 c-w br-2" />
