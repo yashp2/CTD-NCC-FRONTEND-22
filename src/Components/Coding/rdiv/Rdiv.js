@@ -1,5 +1,5 @@
 // import { Button } from 'bootstrap';
-import { useState, FileReader, React } from "react";
+import { useState, React } from "react";
 import { Card } from "react-bootstrap";
 import "./rdiv.css";
 // import Code_Editor from '../code_editor/Code_Editor';
@@ -18,15 +18,15 @@ function Rdiv() {
   let [theme, utheme] = useState("monokai");
   let cscore = 100;
   let [cdc,ucdc]=useState("black");
-  const fileu = async (e) => {
-    e.preventDefault();
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const text = e.target.result;
-      console.log(text);
-      alert(text);
-    };
-  };
+  // const fileu = async (e) => {
+  //   e.preventDefault();
+  //   const reader = new FileReader();
+  //   reader.onload = async (e) => {
+  //     const text = e.target.result;
+  //     console.log(text);
+  //     alert(text);
+  //   };
+  // };
   function langc(e) {
     // console.log(lang);/
     updatelang(e.target.value);
@@ -109,7 +109,7 @@ function Rdiv() {
           <label htmlFor="inpfff" className="rbn rbn3 bg-t  b-1 c-w br-2 pd-lr-15">
             Choose File
           </label>
-          <input type="file" name="inpf" id="inpfff" onChange={fileu} />
+          <input type="file" name="inpf" id="inpfff" onChange={} />
         </div>
         <div >
           <input type="submit" value="Submit" className="rbn rbn4 b-b pd-lr-15 bg-t  b-1 c-w br-2" />
