@@ -9,7 +9,7 @@ function Navbarr(){
   const [nav_qh,unav_qh]=useState(false);
   const [nav_lb,unav_lb]=useState(false);
   const [nav_s,unav_s]=useState(false);
-  if(location.pathname==="/coding" || location.pathname==="/instructions" || location.pathname==="/leaderboard" || location.pathname==="/questionhub" || location.pathname==="/testcases" || location.pathname==="/submissions"){
+  if(location.pathname==="/coding/1"  ||location.pathname==="/coding/2"||location.pathname==="/coding/3"||location.pathname==="/coding/4" ||location.pathname==="/coding/5"||location.pathname==="/coding/6"|| location.pathname==="/instructions" || location.pathname==="/leaderboard" || location.pathname==="/questionhub" || location.pathname==="/testcases" || location.pathname==="/submissions"){
     
     return(
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" >

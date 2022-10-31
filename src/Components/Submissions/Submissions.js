@@ -3,77 +3,56 @@ import Card from "react-bootstrap/Card";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import AceEditor from "react-ace";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Submissions() {
-  const [showmodal , Switchmodal]=useState(false);
-  const [modal_body , change_content]=useState("");
-  let ind=0;
-    const s_data=[{
-        sr:1,
-        s_time:"10:45",
-        s_score:100,
-        s_view:'#include <bits/stdc++.h>\n#define ll long long \nusing namespace std;\n\nll int gcd(ll int x, ll int y) {\n    if (y == 0)\n      return x;\n      return gcd(y, x%y);\n  }\n  ll int lcm(ll int x,ll int y){\n      return (x*y)/gcd(x,y);\n  }\n  \nmain() { \n  // your code goes here  \n   ll int n;  \n     cin>>n;  \n     ll int arr[66]={0};  \n     ll int mf=0;  \n     ll int mod=1000000007;  \n     for (int i = 1; i <=n; i++)  \n     {  \n        ll int ci=i;  \n        while(ci){  \n            if(ci%2)arr[mf]++;  \n            ci/=2;  \n            mf++;  \n        }  \n        mf=0;  \n     }  \n   //  for (auto &&i : arr)  \n   //  {    \n  //     cout<<i<<" ";    \n  //  }    \n     ll int ans=0;    \n     mf=1;    \n     for (int i = 0; i < 66; i++)    \n       {      \n          arr[i]%=mod;      \n          mf%=mod;      \n            ans+=(arr[i]*mf)%mod;      \n            ans%=mod;      \n            mf*=10;      \n         }      \n         cout<<ans<<endl;      \n      return 0;      \n    }',
-        s_lang:"c"
-    },{
-        sr:2,
-        s_time:"01:45",
-        s_score:80,
-        s_view:"abc2",
-        s_lang:"c"
-    },{
-        sr:3,
-        s_time:"06:30",
-        s_score:50,
-        s_view:"abc3",
-        s_lang:"c"
-    },{
-        sr:4,
-        s_time:"09:45",
-        s_score:0,
-        s_view:"abc4",
-        s_lang:"c"
-    },{
-        sr:5,
-        s_time:"05:15",
-        s_score:60,
-        s_view:"abc",
-        s_lang:"c"
-    },{
-        sr:6,
-        s_time:"08:45",
-        s_score:10,
-        s_view:"abc",
-        s_lang:"c"
-    },{
-        sr:6,
-        s_time:"08:45",
-        s_score:10,
-        s_view:"abc",
-        s_lang:"c"
-    },{
-        sr:6,
-        s_time:"08:45",
-        s_score:10,
-        s_view:"abc",
-        s_lang:"c"
-    },{
-        sr:6,
-        s_time:"08:45",
-        s_score:10,
-        s_view:"abc",
-        s_lang:"c"
-    }];
+  const [showmodal, Switchmodal] = useState(false);
+  const [modal_body, change_content] = useState("");
+  let [s_data, UpdateSubs] = useState([]);
+  const [loading, setLoading] = useState(0);
+  const [cmode,ChangeMode]=useState("c_cpp");
+  var axios = require('axios');
+  let token = localStorage.getItem('token');
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      // console.log(localStorage.getItem('token'));
+      var config = {
+        method: 'get',
+        url: 'http://127.0.0.1:8000/NCC/submission',
+        headers: {
+          'Authorization': `${token}`
+        }
+      };
 
-    function handleclick(x){
-      x-=1;
-      let z=s_data[x].s_view;
-      console.log(z);
-      
-      Switchmodal(true);
-      change_content(z);
-      
+      const subs = await axios(config)
+
+      console.log('Subs',JSON.stringify(subs.data))
+
+      UpdateSubs(subs.data);
+      setLoading(false);
+
     }
+    loadData();
+  }, [token]);
+
+  if (loading) {
+    return (
+      <>Loadingg....</>
+    )
+  }
+  let ind = 0;
+  function handleclick(x) {
+    x -= 1;
+    let z = s_data[x].code;
+    // console.log(z);
+
+    Switchmodal(true);
+    change_content(z);
+
+  }
+  console.log(s_data);
+  console.log("SUBS TYPE",typeof(s_data));
   return (
     <div className="submissions_pg d-flex flex-column justify-content-start align-items-center">
       <Card className="submission_top_c text-white m-3 mt-4">
@@ -113,28 +92,33 @@ function Submissions() {
       {/* <Button onClick={()=>{Switchmodal(true)}}>hello</Button> */}
       <Card className="submissions-m-div m-3 bg-transparent text-white">
         <Card className="d-flex flex-row justify-content-around align-items-center bg-transparent br-2 m-2 p-1">
-            <div><h4>Sr No.</h4></div>
-            <div><h4>Time</h4></div>
-            <div><h4>Score</h4></div>
-            <div><h4>View</h4></div>
+          <div><h4>Sr No.</h4></div>
+          <div><h4>Time</h4></div>
+          <div><h4>Score</h4></div>
+          <div><h4>View</h4></div>
         </Card>
         <Card className="bg-transparent submissions-m-div-bottom">
-            {s_data.map((obj)=>{
-              var sr_no=obj.sr;
-              // console.log(sr_no);
-              
-                return(
-                    <Card className="d-flex flex-row justify-content-around align-items-center bg-transparent br-1 m-1 p-1">
-                <div id={`sr_${obj.sr}`}><h4>{obj.sr}</h4></div>
-                <div><h4>{obj.s_time}</h4></div>
-                <div><h4>{obj.s_score}</h4></div>
-                <div><h4><Button onClick={()=>{
-                handleclick(obj.sr);
+          {s_data.map((obj) => {
+            var sr_no = obj.sr;
+            // console.log(sr_no);
+
+            return (
+              <Card className="d-flex flex-row justify-content-around align-items-center bg-transparent br-1 m-1 p-1">
+                <div id={`sr_${obj.id}`}><h4>{obj.id}</h4></div>
+                <div><h4>{obj.time}</h4></div>
+                <div><h4>{obj.status}</h4></div>
+                <div><h4><Button onClick={() => {
+                  Switchmodal(true);
+                  change_content(obj.code);
+                  if(obj.language === "c++")ChangeMode("c_cpp");
+                  else if(obj.language === "python")ChangeMode("python");
+                  else if(obj.language === "java")ChangeMode("java");
+                  else ChangeMode("c_cpp");
                 }}>View</Button></h4></div>
-                
-                </Card>
-                )
-            })}
+
+              </Card>
+            )
+          })}
         </Card>
       </Card>
       <Modal
@@ -142,7 +126,7 @@ function Submissions() {
         show={showmodal}
         onHide={() => Switchmodal(false)}
         aria-labelledby="example-modal-sizes-title-lg"
-        
+
       >
         <Modal.Header closeButton className="bg-custom text-white ">
           <Modal.Title id="example-modal-sizes-title-lg" className="text-center">
@@ -153,32 +137,32 @@ function Submissions() {
           {/* <h5 id="modal_body_h">{modal_body}</h5> */}
           <div className="s_pg_ace_e ">
             <AceEditor
-            mode="c_cpp"
-            theme="monokai"
-            name="UNIQUE_ID_OF_DIV"
-            style={{ height: "100%", width: "100%"}}
-            value={modal_body}
-            editorProps={{ $blockScrolling: true }}
-            setOptions={{
-              tabSize: 1,
-              showPrintMargin: false, // boolean: true if show the vertical print margin
-              showGutter: true, // boolean: true if show line gutter
-              wrap: true,
-              readOnly:true
-            }}
+              mode={cmode}
+              theme="monokai"
+              name="UNIQUE_ID_OF_DIV"
+              style={{ height: "100%", width: "100%" }}
+              value={modal_body}
+              editorProps={{ $blockScrolling: true }}
+              setOptions={{
+                tabSize: 1,
+                showPrintMargin: false, // boolean: true if show the vertical print margin
+                showGutter: true, // boolean: true if show line gutter
+                wrap: true,
+                readOnly: true
+              }}
             />
-            </div> 
+          </div>
         </Modal.Body>
         <Modal.Footer className="bg-custom">
-          <Button variant="secondary" onClick={()=>{navigator.clipboard.writeText(modal_body);}}>
+          <Button variant="secondary" onClick={() => { navigator.clipboard.writeText(modal_body); }}>
             Copy Code
           </Button>
-          <Button variant="primary" onClick={()=>Switchmodal(false)}>
+          <Button variant="primary" onClick={() => Switchmodal(false)}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
-      
+
     </div>
   );
 }
