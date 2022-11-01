@@ -5,15 +5,19 @@ import { Form, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 function Questionhub() {
+
+    let a=localStorage.getItem("isloggedin");
+    const navigate=useNavigate();
+    if(a==false)navigate("/");
+
     var axios = require('axios');
     const [loading, setLoading] = useState(false);
     const [Qdata, UpdateQdata] = useState([]);
-    const navigate = useNavigate();
     let token = localStorage.getItem('token');
 
     function Redirect(props) {
         console.log(props.target.id);
-        navigate(`/coding/1`)
+        navigate(`/coding/${props.target.id}`)
     }
 
     useEffect(() => {

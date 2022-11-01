@@ -43,7 +43,13 @@
 .bg-custom{
     background-color: #232323;
 }
-
+.width30{
+    width: 100px;
+}
+.w300{
+    width: 300px;
+    text-align: center;
+}
 @media(max-width:740px){
     .submissions_pg{
         padding: 20px!important;

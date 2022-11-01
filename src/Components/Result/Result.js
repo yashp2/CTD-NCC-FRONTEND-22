@@ -62,16 +62,26 @@ function Result() {
       console.log(allusd.data);
       // let topper1=allusd.data[0];
       // console.log(topper1);
-      toppers[0].UserName = allusd.data[0][0];
-      toppers[1].UserName=allusd.data[1][0];
-      toppers[2].UserName=allusd.data[2][0];
-      toppers[0].Scorep=allusd.data[0][2];
-      toppers[1].Scorep=allusd.data[1][2];
-      toppers[2].Scorep=allusd.data[2][2];
+      let lis=Object.keys(allusd.data);
+          let lis1=allusd.data;
+          console.log("lis",typeof(lis));
+          let tempdata=[];
+          for(let i=0;i<3;i++){
+            tempdata.push({Rank:`${i+1}`,...lis1[lis[i]],Username:lis[i]});
+            console.log(lis[i]);
+          }
+          console.log(tempdata[0]);
+      toppers[0].UserName = tempdata[0].Username;
+      toppers[1].UserName= tempdata[1].Username;
+      toppers[2].UserName=tempdata[2].Username;
+      toppers[0].Scorep=tempdata[0].total_score;
+      toppers[1].Scorep=tempdata[1].total_score;
+      toppers[2].Scorep=tempdata[2].total_score;
 
       setLoading(false);
     }
     loadData();
+    localStorage.clear();
   }, [token]);
 
   if (loading) {

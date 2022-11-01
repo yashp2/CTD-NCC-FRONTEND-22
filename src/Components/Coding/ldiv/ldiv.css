@@ -76,6 +76,8 @@
     height: calc(100% - 32px);
     resize: none;
     border: 0px ;
+    padding: 20px;
+    font-size: 20px;
 }
 .pd-lr-15{
     padding: 0px 15px;
@@ -111,4 +113,9 @@
     .inp,.out{
         height: 300px;
     }
+}
+
+@media (max-width:540px){
+    .ipop{flex-direction: column;}
+    .inp,.out{margin: 10px;width: 100%;}
 }

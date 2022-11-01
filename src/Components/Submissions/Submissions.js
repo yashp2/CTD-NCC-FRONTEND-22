@@ -41,7 +41,7 @@ function Submissions() {
       <>Loadingg....</>
     )
   }
-  let ind = 0;
+  let ind = 1;
   function handleclick(x) {
     x -= 1;
     let z = s_data[x].code;
@@ -55,8 +55,8 @@ function Submissions() {
   console.log("SUBS TYPE",typeof(s_data));
   return (
     <div className="submissions_pg d-flex flex-column justify-content-start align-items-center">
-      <Card className="submission_top_c text-white m-3 mt-4">
-        <p className="d-flex flex-row justify-content-around align-items-center submission_top m-1 p-1 text-white">
+      {/* <Card className="submission_top_c text-white m-3 mt-4"> */}
+        {/* <p className="d-flex flex-row justify-content-around align-items-center submission_top m-1 p-1 text-white">
           <div className="p-0 m-0" >
             <h5 className="p-0 m-0" >
               <a href="http://youtube.com" className="text-white">1</a>
@@ -87,14 +87,15 @@ function Submissions() {
               <a href="http://youtube.com" className="text-white">6</a>
             </h5>
           </div>
-        </p>
-      </Card>
+        </p> */}
+      {/* </Card> */}
       {/* <Button onClick={()=>{Switchmodal(true)}}>hello</Button> */}
       <Card className="submissions-m-div m-3 bg-transparent text-white">
         <Card className="d-flex flex-row justify-content-around align-items-center bg-transparent br-2 m-2 p-1">
           <div><h4>Sr No.</h4></div>
-          <div><h4>Time</h4></div>
-          <div><h4>Score</h4></div>
+          <div className="w300"><h4>Time</h4></div>
+          <div><h4>Status</h4></div>
+          <div><h4>Language</h4></div>
           <div><h4>View</h4></div>
         </Card>
         <Card className="bg-transparent submissions-m-div-bottom">
@@ -104,17 +105,18 @@ function Submissions() {
 
             return (
               <Card className="d-flex flex-row justify-content-around align-items-center bg-transparent br-1 m-1 p-1">
-                <div id={`sr_${obj.id}`}><h4>{obj.id}</h4></div>
-                <div><h4>{obj.time}</h4></div>
-                <div><h4>{obj.status}</h4></div>
-                <div><h4><Button onClick={() => {
+                <div id={`sr_${obj.id}`}><h5>{ind++}</h5></div>
+                <div><h5>{obj.time}</h5></div>
+                <div><h5>{obj.status}</h5></div>
+                <div className="width30"><h5>{obj.language}</h5></div>
+                <div><h5><Button onClick={() => {
                   Switchmodal(true);
                   change_content(obj.code);
                   if(obj.language === "c++")ChangeMode("c_cpp");
                   else if(obj.language === "python")ChangeMode("python");
                   else if(obj.language === "java")ChangeMode("java");
                   else ChangeMode("c_cpp");
-                }}>View</Button></h4></div>
+                }}>View</Button></h5></div>
 
               </Card>
             )

@@ -10,7 +10,31 @@ import { useState } from "react";
 var axios = require('axios');
 function Login() {
 
-  
+  localStorage.setItem(`c++1`, "#include<iostream>\nusing namespace std;\n\nint main(){\n//your code here\nreturn 0;\n}");
+  localStorage.setItem(`c1`, "//your code here");
+  localStorage.setItem(`c2`, "//your code here");
+  localStorage.setItem(`c3`, "//your code here");
+  localStorage.setItem(`c4`, "//your code here");
+  localStorage.setItem(`c5`, "//your code here");
+  localStorage.setItem(`c6`, "//your code here");
+  localStorage.setItem(`java1`, "//your code here");
+  localStorage.setItem(`python1`, "#your code here");
+  localStorage.setItem(`c++2`, "#include<iostream>\nusing namespace std;\n\nint main(){\n//your code here\nreturn 0;\n}");
+  localStorage.setItem(`java2`, "//your code here");
+  localStorage.setItem(`python2`, "#your code here");
+  localStorage.setItem(`c++3`, "#include<iostream>\nusing namespace std;\n\nint main(){\n//your code here\nreturn 0;\n}");
+  localStorage.setItem(`java3`, "//your code here");
+  localStorage.setItem(`python3`, "#your code here");
+  localStorage.setItem(`c++4`, "#include<iostream>\nusing namespace std;\n\nint main(){\n//your code here\nreturn 0;\n}");
+  localStorage.setItem(`java4`, "//your code here");
+  localStorage.setItem(`python4`, "#your code here");
+  localStorage.setItem(`c++5`, "#include<iostream>\nusing namespace std;\n\nint main(){\n//your code here\nreturn 0;\n}");
+  localStorage.setItem(`java5`, "//your code here");
+  localStorage.setItem(`python5`, "#your code here");
+  localStorage.setItem(`c++6`, "#include<iostream>\nusing namespace std;\n\nint main(){\n//your code here\nreturn 0;\n}");
+  localStorage.setItem(`java6`, "//your code here");
+  localStorage.setItem(`python6`, "#your code here");
+  localStorage.setItem("isloggedin",false);
   let [name,changename]=useState("");
   let [pass,changepass]=useState("");
   const navigate=useNavigate();
@@ -32,6 +56,7 @@ function Login() {
       console.log(data2.data.auth_token);
       document.getElementById('errormsg').classList.remove('show');
       localStorage.setItem('token', `token ${data2.data.auth_token}`);
+      localStorage.setItem("isloggedin",true);
       navigate("/instructions");
       // console.log(data1.data);
     })
