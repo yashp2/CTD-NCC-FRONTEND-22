@@ -1,53 +1,56 @@
 import "./Testcases.css";
 import Card from "react-bootstrap/Card";
 import { isContentEditable } from "@testing-library/user-event/dist/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import tick from "./checked.png";
 import cross from "./cross.png";
-const testcases_data = [
-  {
-    no: 1,
-    status: "Ac",
-    accepted: true,
-  },
-  {
-    no: 2,
-    status: "Tle",
-    accepted: false,
-  },
-  {
-    no: 3,
-    status: "Ac",
-    accepted: true,
-  },
-  {
-    no: 4,
-    status: "Ac",
-    accepted: true,
-  },
-  {
-    no: 5,
-    status: "Wa",
-    accepted: false,
-  },
-  {
-    no: 6,
-    status: "Wa",
-    accepted: false,
-  },
-  
-];
+import { Navigate, useNavigate, useParams, useLocation } from "react-router";
 
-function Testcases() {
-  // const[console_content , Update_console_content]=useState("Line 4: Char 6: error: use of undeclared identifier 'asda'\nasda\n     ^\n1 error generated.")
+
+
+const Testcases = () => {
+  const [testcases_data, utestdata] = useState([]);
   const [console_content, Update_console_content] = useState(
     "Line 4: Char 6: error: use of undeclared identifier 'asda'\nasda\n     ^\n1 error generated."
   );
+  const location = useLocation();
+  let a = localStorage.getItem("isloggedin");
+  const navigate = useNavigate();
+  if (a == "false") navigate("/");
+  let token = localStorage.getItem('token');
+
+
+  // acdata.map((e)=>{
+  //   let tcv=false;
+  //   if(e=='AC')tcv=true;
+  //   temp.push({no:++i,status:{e},accepted:{tcv}})
+  // })
+
+  useEffect(() => {
+    const loadData = async () => {
+
+      console.log(location.state);
+      let acdata = location.state.cases;
+      console.log(acdata);
+      let temp = [];
+      let i = 0;
+      acdata.map((e) => {
+        let tcv = false;
+        if (e == 'AC') tcv = true;
+        temp.push({ no: ++i, status:  `${e}` , accepted:  tcv  })
+      })
+      console.log(temp);
+      utestdata(temp);
+      Update_console_content(location.state.error);
+    }
+    loadData();
+  }, [token]);
+
 
   return (
     <div className="test-cases-pg d-flex justify-content-center align-items-center">
       <Card className="t-pg-console bg-transparent m-3 text-white p-4">
-        <h4>Score : 45</h4>
+        {/* <h4>Score : 45</h4> */}
         <h4>Console :</h4>
         {console_content}
       </Card>
@@ -93,9 +96,9 @@ function Testcases() {
           );
         })}
       </div>
-      
+
     </div>
   );
-}
+};
 
 export default Testcases;

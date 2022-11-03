@@ -15,7 +15,7 @@ function Coding(props) {
     const { id } = useParams();
     let a=localStorage.getItem("isloggedin");
     const navigate=useNavigate();
-    if(a==false)navigate("/");
+    if(a=="false")navigate("/");
     let lprops = {
         i: id,
         // custominp: custominp,

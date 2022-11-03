@@ -4,8 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import AceEditor from "react-ace";
 import { useEffect, useState } from "react";
-
+import { Navigate ,useNavigate} from "react-router";
 function Submissions() {
+  let a=localStorage.getItem("isloggedin");
+  const navigate=useNavigate();
+  if(a=="false")navigate("/");
   const [showmodal, Switchmodal] = useState(false);
   const [modal_body, change_content] = useState("");
   let [s_data, UpdateSubs] = useState([]);
@@ -106,7 +109,7 @@ function Submissions() {
             return (
               <Card className="d-flex flex-row justify-content-around align-items-center bg-transparent br-1 m-1 p-1">
                 <div id={`sr_${obj.id}`}><h5>{ind++}</h5></div>
-                <div><h5>{obj.time}</h5></div>
+                <div><h5>{obj.hours} : {obj.mins}</h5></div>
                 <div><h5>{obj.status}</h5></div>
                 <div className="width30"><h5>{obj.language}</h5></div>
                 <div><h5><Button onClick={() => {

@@ -31,7 +31,8 @@ function App() {
         <Route path="/instructions"  element={<Instructions />} exact />
         <Route path="/questionhub"  element={<Questionhub />} exact />
         <Route path="/coding/:id"  element={<Coding />} exact/>
-        <Route path="/testcases"  element={(props) => (<Testcases {...props} />)} exact />
+        <Route path="/testcases"  element={<Testcases />} exact />
+        {/* <Route name="testcases"  element={(<Testcases />)} exact /> */}
         <Route path="/submissions"  element={<Submissions />} exact />
         <Route path="/leaderboard"  element={<Leaderboard />} exact />
         <Route path="/result"  element={<Result />} exact />

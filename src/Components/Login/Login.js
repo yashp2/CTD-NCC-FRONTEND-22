@@ -9,7 +9,7 @@ import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 var axios = require('axios');
 function Login() {
-
+  localStorage.clear();
   localStorage.setItem(`c++1`, "#include<iostream>\nusing namespace std;\n\nint main(){\n//your code here\nreturn 0;\n}");
   localStorage.setItem(`c1`, "//your code here");
   localStorage.setItem(`c2`, "//your code here");

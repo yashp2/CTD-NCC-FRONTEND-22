@@ -71,6 +71,16 @@
 .bg-bl{
     background-color: black;
 }
+.bg-t{
+    background-color: transparent;
+}
+.rbtnav{
+    justify-content: space-between;
+}
+
+.b-2{
+    border: 2px solid #39998e;
+}
 
 @media(max-width:985px){
     .rdiv{

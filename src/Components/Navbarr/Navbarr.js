@@ -1,20 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Navbarr.css';
 import{Navbar,Nav,Container,NavDropdown} from 'react-bootstrap';
 import { NavLink, useLocation } from "react-router-dom";
+import { Navigate ,useNavigate} from "react-router";
+import Timer from '../Timer';
 function Navbarr(){
   const location = useLocation();
-  console.log(location.pathname);
-  const [nav_ins,unav_ins]=useState(false);
-  const [nav_qh,unav_qh]=useState(false);
-  const [nav_lb,unav_lb]=useState(false);
-  const [nav_s,unav_s]=useState(false);
+
   if(location.pathname==="/coding/1"  ||location.pathname==="/coding/2"||location.pathname==="/coding/3"||location.pathname==="/coding/4" ||location.pathname==="/coding/5"||location.pathname==="/coding/6"|| location.pathname==="/instructions" || location.pathname==="/leaderboard" || location.pathname==="/questionhub" || location.pathname==="/testcases" || location.pathname==="/submissions"){
     
     return(
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" >
     <Container>
       <Navbar.Brand href="#home">Sponsor logo</Navbar.Brand>
+      <Navbar.Brand href="#home" style={{'margin-left':"40px"}}><Timer /></Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">

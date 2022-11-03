@@ -7,8 +7,9 @@ import {  useNavigate } from "react-router-dom";
 
 function Instructions(){
     let a=localStorage.getItem("isloggedin");
+    console.log(a);
     const navigate=useNavigate();
-    if(a==false)navigate("/");
+    if(a=="false"){console.log("not logged in");navigate("/");}
     const [inst_checked, setChecked] = useState(false);
     
 

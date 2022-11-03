@@ -1,6 +1,6 @@
 // import React from 'React';
 import { useEffect, useState } from 'react';
-import {Card} from 'react-bootstrap';
+import {Card,Navbar,Nav} from 'react-bootstrap';
 import './ldiv.css';
 
 function Ldiv(props){
@@ -59,14 +59,22 @@ function cc(e){
    return(
     <Card className='ldiv bg-t'>
         <Card className='quesq bg-t b-1 c-w'>
-            <div className='qno' ><h5>1</h5></div>
+            {/* <div className='qno' ><h5>1</h5></div>
             <div className='qno'><h5>2</h5></div>
             <div className='qno '><h5>3</h5></div>
             <div className='qno'><h5>4</h5></div>
             <div className='qno'><h5>5</h5></div>
-            <div className='qno'><h5>6</h5></div>
+            <div className='qno'><h5>6</h5></div> */}
+            
+          <Nav.Link href="/coding/1"  className={qid==1?"qccactive":""}>Q1</Nav.Link>
+          <Nav.Link href="/coding/2"  className={qid==2?"qccactive":""}>Q2</Nav.Link>
+          <Nav.Link href="/coding/3"  className={qid==3?"qccactive":""}>Q3</Nav.Link>
+          <Nav.Link href="/coding/4"  className={qid==4?"qccactive":""}>Q4</Nav.Link>
+          <Nav.Link href="/coding/5"  className={qid==5?"qccactive":""}>Q5</Nav.Link>
+          <Nav.Link href="/coding/6"  className={qid==6?"qccactive":""}>Q6</Nav.Link>
+        
         </Card>
-        <div className='qdisp bg-t b-2'>
+        <div className='qdisp bg-t b-2 br-2'>
             {/* <textarea name="" className='qdispt bg-t c-w 'id="qdispt" readOnly>{qdisp}</textarea> */}
             <Card className='qdispt bg-t c-w ' id="qdispt">
                 <h4>{qdisp.id}  {qdisp.title} </h4>
@@ -79,7 +87,7 @@ function cc(e){
                 <h5>{qdisp.constraints}</h5>
                 </Card>
         </div>
-        <Card className='ipop bg-t'>
+        {/* <Card className='ipop bg-t'>
             <Card className="inp bg-t b-2">
                 <div className='bg-b c-w'><h5>Custom Input</h5></div>
                 <textarea name="" id="cinpp" className='inpt bg-t c-w br-2' onChange={cc}>{ci}</textarea>
@@ -88,7 +96,7 @@ function cc(e){
                 <div className='bg-b c-w'><h5>Custom Output</h5></div>
                 <textarea name="" id="coutt" className='outt bg-t c-w br-2' readOnly>{co}</textarea>
             </Card>
-        </Card>
+        </Card> */}
     </Card>
     )
 }

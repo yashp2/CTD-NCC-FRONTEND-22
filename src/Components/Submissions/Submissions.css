@@ -47,7 +47,7 @@
     width: 100px;
 }
 .w300{
-    width: 300px;
+    /* width: 300px; */
     text-align: center;
 }
 @media(max-width:740px){

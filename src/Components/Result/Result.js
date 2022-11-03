@@ -5,8 +5,11 @@ import C1 from "./crown_gold.png";
 import C2 from "./crown_silver.png";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useEffect, useState } from "react";
-
+import { Navigate ,useNavigate} from "react-router";
 function Result() {
+  let a=localStorage.getItem("isloggedin");
+    const navigate=useNavigate();
+    if(a=="false")navigate("/");
   const token=localStorage.getItem('token');
   const [loading, setLoading] = useState(0);
   var axios = require('axios');
@@ -77,11 +80,14 @@ function Result() {
       toppers[0].Scorep=tempdata[0].total_score;
       toppers[1].Scorep=tempdata[1].total_score;
       toppers[2].Scorep=tempdata[2].total_score;
-
+        config.url='http://127.0.0.1:8000/NCC/rank';
+        const urank = await axios(config);
+        Userdata.Rank=urank.data.rank;
       setLoading(false);
     }
     loadData();
     localStorage.clear();
+    localStorage.setItem("isloggedin",false);
   }, [token]);
 
   if (loading) {

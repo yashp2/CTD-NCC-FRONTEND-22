@@ -8,7 +8,7 @@ function Questionhub() {
 
     let a=localStorage.getItem("isloggedin");
     const navigate=useNavigate();
-    if(a==false)navigate("/");
+    if(a=="false")navigate("/");
 
     var axios = require('axios');
     const [loading, setLoading] = useState(false);
